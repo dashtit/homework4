@@ -6,5 +6,4 @@ def infinity_loop(left: int, right: int) -> bool:
             return True
         if left == right:
             return False
-    else:
-        return False
+    return False
