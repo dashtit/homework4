@@ -1,5 +1,8 @@
+from collections.abc import Callable
+
+
 def typed(type_is):
-    def decorator_type(func):
+    def decorator_type(func: Callable) -> Callable:
         def wrapper(*args):
             args_list = []
             for arg in args:

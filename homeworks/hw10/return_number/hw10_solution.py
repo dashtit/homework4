@@ -1,10 +1,12 @@
-def summary_decorator(func):
+from collections.abc import Callable
+
+
+def summary_decorator(func: Callable) -> Callable:
     def wrapper(*args, **kwargs):
         result = func(*args, **kwargs)
-        if isinstance(result, int):
-            return result
-        else:
+        if not isinstance(result, int):
             raise ValueError('Arguments should be a number')
+        return result
     return wrapper
 
 

@@ -1,4 +1,7 @@
-def validate_arguments(func):
+from collections.abc import Callable
+
+
+def validate_arguments(func: Callable) -> Callable:
     def wrapper(*args, **kwargs):
         arguments = list(args) + list(kwargs.values())
         for arg in arguments:
