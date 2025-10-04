@@ -31,7 +31,6 @@ class CardsDeck:
 
     def get_card(self, number):
         validated = self._card_validator(number)
-        validated = self._card_validator(validated)
         return self.deck.pop(validated - 1)
 
     def get_remaining_cards(self):
