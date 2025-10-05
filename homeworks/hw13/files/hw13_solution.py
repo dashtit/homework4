@@ -45,7 +45,7 @@ class StudentManager:
             with open(self.filename, 'a') as file:
                 file.write(f'\nTotal students: {len(self.students)}\n')
                 for group, stats in self.get_summary().items():
-                    file.write(f'{group}: count = {stats['count']}, '
-                               f'average grade = {stats['avg_grade']}\n')
+                    file.write(f"{group}: count = {stats['count']}, "
+                               f"average grade = {stats['avg_grade']}\n")
         except IOError as e:
             print(f'Error while writing to file: {e}')
