@@ -1,8 +1,12 @@
+from homeworks.hw11.bank_deposit.currency import CurrencyConverter
+
+
 class Bank:
 
     def __init__(self):
         self.clients = {}
         self.deposits = {}
+        self.converter = CurrencyConverter()
 
     def register_client(self, client_id, name):
         if client_id not in self.clients:
@@ -33,3 +37,6 @@ class Bank:
         final = self.calc_interest_rate(client_id)
         del self.deposits[client_id]
         return final
+
+    def exchange_currency(self, from_curr, amount, to_curr='BYN'):
+        return self.converter.convert(from_curr=from_curr, amount=amount, to_curr=to_curr)
