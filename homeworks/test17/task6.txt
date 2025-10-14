@@ -1,0 +1,6 @@
+String count: 0
+Word count: 0
+Letter count: 0
+String count: 3
+Word count: 9
+Letter count: 37
