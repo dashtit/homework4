@@ -1,8 +1,7 @@
 def if_paly(num):
     if str(num) == str(num)[::-1]:
         return True
-    else:
-        return False
+    return False
 
 
 assert if_paly(121) is True

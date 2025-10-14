@@ -1,5 +1,5 @@
 def file_info(filename):
-    with open(filename, 'r', encoding = 'utf-8') as file:
+    with open(filename, 'r', encoding='utf-8') as file:
         lines = file.readlines()
     num_lines = len(lines)
     num_words = 0
@@ -10,7 +10,7 @@ def file_info(filename):
         for word in line.split():
             num_letters += len(word)
     result = f'String count: {num_lines}\nWord count: {num_words}\nLetter count: {num_letters}\n'
-    with open(filename, 'a', encoding = 'utf-8') as file:
+    with open(filename, 'a', encoding='utf-8') as file:
         file.write(result)
     print(result)
 
