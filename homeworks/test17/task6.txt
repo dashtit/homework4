@@ -4,3 +4,9 @@ Letter count: 0
 String count: 3
 Word count: 9
 Letter count: 37
+String count: 6
+Word count: 18
+Letter count: 75
+String count: 9
+Word count: 27
+Letter count: 114

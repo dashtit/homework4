@@ -8,13 +8,12 @@ assert double_number(11) == 121
 
 
 def if_even(n):
-    if n % 2 == 0:
-        return True
-    else:
+    if not n % 2 == 0:
         return False
+    return True
 
 
-assert if_even(2) == True
-assert if_even(3) == False
-assert if_even(100) == True
-assert if_even(111) == False
+assert if_even(2) is True
+assert if_even(3) is False
+assert if_even(100) is True
+assert if_even(111) is False
