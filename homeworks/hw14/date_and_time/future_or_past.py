@@ -1,12 +1,15 @@
-from datetime import datetime
+from datetime import datetime, date
 
 
-def is_future(date):
+def is_future(date1):
     try:
-        if datetime.strptime(date, '%Y-%m-%d').date() > datetime.now().date():
+        user_date = datetime.strptime(date1, "%Y-%m-%d").date()
+        today = date.today()
+        if user_date > today:
             return True
-        if datetime.strptime(date, '%Y-%m-%d').date() == datetime.now().date():
+        elif user_date < today:
+            return False
+        else:
             return None
-        return False
     except ValueError:
         return 'Wrong datetime format or incorrect date'
