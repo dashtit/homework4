@@ -39,7 +39,7 @@ def test_days_between_negative(date1, date2, expected):
 @pytest.mark.parametrize("date1,expected", [
     ("2030-01-01", True),
     ("2025-01-01", False),
-    # ("2025-02-23", None), before run tests -> change to current date
+    ("2025-10-21", None)
 ])
 def test_is_future(date1, expected):
     assert is_future(date1) == expected, f"Expected {date1} day in future={expected}"
