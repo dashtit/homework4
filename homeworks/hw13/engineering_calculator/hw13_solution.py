@@ -1,3 +1,6 @@
+# pylint: disable=eval-used
+
+
 def validate_expression(expression):
     for char in expression:
         if not char.isdigit() and char not in '+-*/%(). ':
