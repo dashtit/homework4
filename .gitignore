@@ -2,6 +2,14 @@
 __pycache__/
 *.py[cod]
 *$py.class
+.cache/
+
+# Pytest HTML report
+*.html
+*.htm
+
+# Custom logs
+homeworks/hw11/tests/tests.log
 
 # Environments
 venv/
