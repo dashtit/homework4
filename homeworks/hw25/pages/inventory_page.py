@@ -10,7 +10,7 @@ class InventoryPage(BasePage):
     logout_link = '[id="logout_sidebar_link"]'
 
     def verify_page_loaded(self):
-        self.expect_url('https://www.saucedemo.com/inventory.html')
+        self.expect_url(r'.*/inventory\.html')
         self.expect_title('Products')
 
     def add_backpack_to_cart(self):

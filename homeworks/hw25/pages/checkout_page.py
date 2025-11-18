@@ -10,7 +10,7 @@ class CheckoutPage(BasePage):
     finish_button = 'button[id="finish"]'
 
     def verify_checkout_step_one(self):
-        self.expect_url('https://www.saucedemo.com/checkout-step-one.html')
+        self.expect_url(r'.*/checkout-step-one\.html')
         self.expect_title('Checkout: Your Information')
 
     def fill_customer_info(self, first, last, zip_code):
@@ -23,10 +23,10 @@ class CheckoutPage(BasePage):
         self.page.click(self.continue_button)
 
     def verify_checkout_step_two(self):
-        self.expect_url("https://www.saucedemo.com/checkout-step-two.html")
-        self.expect_title("Checkout: Overview")
-        expect(self.page.locator(".cart_quantity")).to_have_text("1")
-        expect(self.page.locator(".inventory_item_name")).to_have_text("Sauce Labs Backpack")
+        self.expect_url(r'.*/checkout-step-two\.html')
+        self.expect_title('Checkout: Overview')
+        expect(self.page.locator('.cart_quantity')).to_have_text('1')
+        expect(self.page.locator('.inventory_item_name')).to_have_text('Sauce Labs Backpack')
 
     def finish_checkout(self):
         self.page.click(self.finish_button)
