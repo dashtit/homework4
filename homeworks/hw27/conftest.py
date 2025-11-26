@@ -1,10 +1,19 @@
 # pylint: disable=redefined-outer-name
-import pytest
-import requests
+from datetime import date, timedelta
+import random
+import pathlib
+import json
 from jsonschema import validate
+from faker import Faker
+import requests
+import pytest
+
 
 
 BASE_URL = 'https://restful-booker.herokuapp.com'
+
+
+fake = Faker()
 
 
 @pytest.fixture
@@ -14,44 +23,40 @@ def base_url_fixture():
 
 @pytest.fixture
 def token_schema_fixture():
-    return {
-        'type': 'object',
-        'properties': {
-            'token': {'type': 'string'}
-        },
-        'required': ['token']
-    }
+    schema_path = pathlib.Path(__file__).parent / 'schemas' / 'jsonschema_sample_auth.json'
+    with schema_path.open() as f:
+        return json.load(f)
 
 
 @pytest.fixture
 def booking_schema_fixture():
-    return {
-        'type': 'object',
-        'properties': {
-            'bookingid': {'type': 'integer'}
-        },
-        'required': ['bookingid']
-    }
+    schema_path = pathlib.Path(__file__).parent / 'schemas' / 'jsonschema_sample_booking.json'
+    with schema_path.open() as f:
+        return json.load(f)
 
 
 @pytest.fixture
 def booking_data_fixture():
+    checkin = date(2025, 1, 1) + timedelta(days=random.randint(0, 365))
+    checkout = checkin + timedelta(days=random.randint(1, 14))
     return {
-        'firstname': 'John',
-        'lastname': 'Doe',
-        'totalprice': 150,
-        'depositpaid': True,
-        'bookingdates': {'checkin': '2024-01-01', 'checkout': '2024-01-10'},
-        'additionalneeds': 'Breakfast'
+        'firstname': fake.first_name(),
+        'lastname': fake.last_name(),
+        'totalprice': random.randint(50, 500),
+        'depositpaid': random.choice([True, False]),
+        'bookingdates': {
+            'checkin': checkin.isoformat(),
+            'checkout': checkout.isoformat()
+        },
+        'additionalneeds': random.choice(['Breakfast', 'Lunch', 'None'])
     }
 
 
 @pytest.fixture
 def auth_token_fixture(base_url_fixture):
-    payload = {
-        'username': 'admin',
-        'password': 'password123'
-    }
+    payload_path = pathlib.Path(__file__).parent / 'data' / 'login_data.json'
+    with payload_path.open() as f:
+        payload = json.load(f)
     resp = requests.post(f'{base_url_fixture}/auth', json=payload, timeout=5)
     assert resp.status_code == 200
     return resp.json().get('token')

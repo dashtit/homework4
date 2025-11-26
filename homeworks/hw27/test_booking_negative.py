@@ -3,7 +3,11 @@ import requests
 
 def test_delete_nonexistent_booking(base_url_fixture, auth_token_fixture):
     cookies = {'token': auth_token_fixture}
-    resp = requests.delete(f'{base_url_fixture}/booking/9999999', cookies=cookies, timeout=5)
+    resp_all = requests.get(f'{base_url_fixture}/booking', timeout=5)
+    existing_ids = {item["bookingid"] for item in resp_all.json()}
+    nonexistent_id = max(existing_ids) + 1
+    resp = requests.delete(f'{base_url_fixture}/booking/{nonexistent_id}',
+                           cookies=cookies, timeout=5)
     assert resp.status_code in [404, 405]
 
 

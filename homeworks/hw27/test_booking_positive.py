@@ -59,7 +59,7 @@ def test_delete_booking(base_url_fixture, booking_data_fixture, auth_token_fixtu
 
 
 def test_filter_booking_by_firstname(base_url_fixture):
-    resp = requests.get(f'{base_url_fixture}/booking?firstname=John', timeout=5)
+    resp = requests.get(f'{base_url_fixture}/booking?firstname=Bob', timeout=5)
     assert resp.status_code == 200
     data = resp.json()
     assert isinstance(data, list)
